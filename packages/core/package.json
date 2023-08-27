@@ -1,0 +1,17 @@
+{
+  "name": "@cj-parser/core",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "vite build"
+  },
+  "main": "./dist/core.mjs",
+  "module": "./dist/core.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/core.umd.js",
+      "module": "./dist/core.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@cj-parser/cj-parser-vue",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "vite build"
+  },
+  "main": "./dist/cj-parser-vue.umd.js",
+  "module": "./dist/cj-parser-vue.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/cj-parser-vue.umd.js",
+      "module": "./dist/cj-parser-vue.mjs"
+    }
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
+  "dependencies": {
+    "@cj-parser/core": "workspace:^",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@testing-library/vue": "^7.0.0",
+    "@vitejs/plugin-vue": "^4.3.3",
+    "eslint-plugin-vue": "^9.17.0",
+    "vue-eslint-parser": "^9.3.1",
+    "vue-tsc": "^1.8.8"
+  }
+}

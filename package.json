@@ -1,0 +1,39 @@
+{
+  "name": "cj-parser",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky install",
+    "changeset": "changeset",
+    "packages-version": "changeset version",
+    "type:show-config": "npx tsc -p tsconfig.json --showConfig",
+    "type": "npx tsc -p tsconfig.json --noEmit --composite false",
+    "build:components": "pnpm --filter ./components/** run build",
+    "build:packages": "pnpm --filter ./packages/** run build",
+    "test:packages": " vitest -r ./packages/"
+  },
+  "workspaces": [
+    "components/cj-parser-vue",
+    "packages/core"
+  ],
+  "devDependencies": {
+    "@changesets/cli": "^2.26.2",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@testing-library/jest-dom": "^6.1.2",
+    "@types/node": "^20.5.6",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "eslint": "^8.48.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-define-config": "^1.23.0",
+    "eslint-plugin-import": "^2.28.1",
+    "husky": "^8.0.3",
+    "jsdom": "^22.1.0",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9",
+    "vitest": "^0.34.3"
+  }
+}

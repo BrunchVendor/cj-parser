@@ -1,0 +1,12 @@
+{
+  // eslint 检查专用，不需要包含到 tsconfig.json 中
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // https://typescript-eslint.io/linting/typed-linting/monorepos
+    "noEmit": true
+  },
+  "include": [
+    "**/*",
+    "**/.*.*"
+  ]
+}
