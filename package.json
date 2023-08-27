@@ -2,8 +2,7 @@
   "name": "cj-parser",
   "private": true,
   "description": "",
-  "main": "index.js",
-  "scripts": {
+   "scripts": {
     "prepare": "husky install",
     "changeset": "changeset",
     "packages-version": "changeset version",
