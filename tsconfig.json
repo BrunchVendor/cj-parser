@@ -12,7 +12,9 @@
     "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
     "paths": {
       "@cj-parser/core": ["./packages/core/index.ts"],
-      "@cj-parser/core/*": ["./packages/core/*"]
+      "@cj-parser/core/*": ["./packages/core/*"],
+      "@cj-parser/streamer": ["./packages/streamer/index.ts"],
+      "@cj-parser/streamer/*": ["./packages/streamer/*"],
     },
     "types": [
       "node",

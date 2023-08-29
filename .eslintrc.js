@@ -28,5 +28,9 @@ module.exports = defineConfig({
     'linebreak-style': 'off',
     'no-console': 'off',
     'no-param-reassign': 'off',
+    'no-continue': 'off',
+    'no-plusplus': 'off',
+    'prefer-destructuring': 'off',
+    'no-restricted-syntax': 'off',
   },
 });
