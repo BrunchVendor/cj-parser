@@ -10,7 +10,6 @@ export abstract class Streamer<T, R> {
   protected constructor(content: T, config?: StreamerConfig, handler?: StreamerEventHandler<R>) {
     this.config = config ?? {};
     this.content = content;
-    handler && (this.handler = handler)
   }
 
   protected abstract nextChunk(): ChunkModel<R>
@@ -18,10 +17,11 @@ export abstract class Streamer<T, R> {
   abstract hasNext(): boolean
 
   read(handler?: StreamerEventHandler<R>): void {
-    handler && (this.handler = handler)
+    if (handler) this.handler = handler
     while (this.hasNext()) {
-      this.handler?.onChunk && this.handler?.onChunk(this.nextChunk())
+      if (this.handler?.onChunk) this.handler?.onChunk(this.nextChunk())
     }
-    this.handler?.onFinish && this.handler.onFinish()
+
+    if (this.handler?.onFinish) this.handler.onFinish()
   }
 }
