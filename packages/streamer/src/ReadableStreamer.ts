@@ -1,6 +1,6 @@
 import { Readable } from 'stream';
 import { ChunkModel, StreamerConfig, StreamerEventHandler } from './types';
-import { Streamer } from './baseStreamer';
+import { Streamer } from './BaseStreamer';
 
 export class ReadableStreamer extends Streamer<Readable, string> {
   pauseInternal: boolean

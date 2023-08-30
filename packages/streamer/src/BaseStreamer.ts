@@ -7,9 +7,10 @@ export abstract class Streamer<T, R> {
 
   handler?: StreamerEventHandler<R>
 
-  protected constructor(content: T, config?: StreamerConfig) {
+  protected constructor(content: T, config?: StreamerConfig, handler?: StreamerEventHandler<R>) {
     this.config = config ?? {};
     this.content = content;
+    if (handler) this.handler = handler
   }
 
   protected abstract nextChunk(): ChunkModel<R>
