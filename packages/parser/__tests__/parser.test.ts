@@ -1,8 +1,10 @@
 import * as fs from 'fs';
+import { describe, expect, it } from 'vitest';
+import { join } from 'node:path'
 import { Parser } from '../src/parser';
 import { DEFAULT_DELIMITERS, guessDelimiterFromCsv, guessLineEndingCharFromCsv } from '../src/parserHelper';
 
-const simpleTestCaseFilePath = `${__dirname}/../../../../document/titanic.csv.simple`;
+const simpleTestCaseFilePath = join(__dirname, '../../../document/titanic.csv.simple')
 const simpleTitanicStr = fs.readFileSync(simpleTestCaseFilePath, 'utf8');
 describe('parser', () => {
   const expectHeaders = ['survived', 'pclass', 'sex', 'age', 'sibsp', 'parch', 'fare', 'embarked', 'class', 'who', 'adult_male', 'deck', 'embark_town', 'alive', 'alone']
