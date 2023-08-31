@@ -27,6 +27,9 @@ describe('Streamer', () => {
         onFinish() {
           resolve(temp)
         },
+        onError(err) {
+          reject(err)
+        },
       })
     })
     expect(result).toStrictEqual(chunksForTestCase)
