@@ -1,5 +1,5 @@
-const { defineConfig } = require('eslint-define-config');
-const path = require('path');
+const { defineConfig } = require('eslint-define-config')
+const path = require('path')
 
 module.exports = defineConfig({
   env: {
@@ -20,10 +20,11 @@ module.exports = defineConfig({
     sourceType: 'module',
   },
   rules: {
+    // import
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
     // typescript
-    '@typescript-eslint/semi': 'off',
+    '@typescript-eslint/semi': ['warn', 'never'],
     // eslint
     'linebreak-style': 'off',
     'no-console': 'off',
@@ -33,4 +34,4 @@ module.exports = defineConfig({
     'prefer-destructuring': 'off',
     'no-restricted-syntax': 'off',
   },
-});
+})

@@ -1,4 +1,4 @@
-import { Encoding } from 'crypto';
+import { Encoding } from 'crypto'
 
 export interface StreamerConfig {
   chunkSize?: number
@@ -12,7 +12,7 @@ export interface StreamerEventHandler<T> {
 }
 
 export interface ChunkModel<T> {
-  data: T,
+  data: T
   isLastChunk: boolean
 }
 

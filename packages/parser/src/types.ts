@@ -1,4 +1,4 @@
-import { StreamerConfig } from '@cj-parser/streamer';
+import { StreamerConfig } from '@cj-parser/streamer'
 
 export type ParserMode = 'default' | 'chunk'
 

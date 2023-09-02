@@ -1,7 +1,7 @@
-import { Readable } from 'stream';
-import { StreamerConfig, StreamerEventHandler } from './types';
-import { StringStreamer } from './StringStreamer';
-import { ReadableStreamer } from './ReadableStreamer';
+import { Readable } from 'stream'
+import { StreamerConfig, StreamerEventHandler } from './types'
+import { StringStreamer } from './StringStreamer'
+import { ReadableStreamer } from './ReadableStreamer'
 
 export const streamer = (
   content: string | Readable,

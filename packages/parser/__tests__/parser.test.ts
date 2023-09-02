@@ -1,11 +1,11 @@
-import * as fs from 'fs';
-import { describe, expect, it } from 'vitest';
+import * as fs from 'fs'
+import { describe, expect, it } from 'vitest'
 import { join } from 'node:path'
-import { Parser } from '../src/parser';
-import { DEFAULT_DELIMITERS, guessDelimiterFromCsv, guessLineEndingCharFromCsv } from '../src/parserHelper';
+import { Parser } from '../src/parser'
+import { DEFAULT_DELIMITERS, guessDelimiterFromCsv, guessLineEndingCharFromCsv } from '../src/parserHelper'
 
 const simpleTestCaseFilePath = join(__dirname, '../../../document/titanic.csv.simple')
-const simpleTitanicStr = fs.readFileSync(simpleTestCaseFilePath, 'utf8');
+const simpleTitanicStr = fs.readFileSync(simpleTestCaseFilePath, 'utf8')
 describe('parser', () => {
   const expectHeaders = ['survived', 'pclass', 'sex', 'age', 'sibsp', 'parch', 'fare', 'embarked', 'class', 'who', 'adult_male', 'deck', 'embark_town', 'alive', 'alone']
   const expectSimpleLines = [
@@ -26,8 +26,8 @@ describe('parser', () => {
   ]
   describe('parser.parserString', () => {
     it('parser with string', async () => {
-      let realHeaders: string[] = [];
-      const realLines: string[][] = [];
+      let realHeaders: string[] = []
+      const realLines: string[][] = []
       await new Promise<void>((resolve) => {
         new Parser(simpleTitanicStr, {
           onLine: (line) => {
@@ -46,8 +46,8 @@ describe('parser', () => {
     })
 
     it('parser with readable', async () => {
-      let realHeaders: string[] = [];
-      const realLines: string[][] = [];
+      let realHeaders: string[] = []
+      const realLines: string[][] = []
       await new Promise<void>((resolve) => {
         new Parser(fs.createReadStream(simpleTestCaseFilePath), {
           onLine: (line) => {
@@ -66,8 +66,8 @@ describe('parser', () => {
     })
 
     it('parse with chunk', async () => {
-      let realHeaders: string[] = [];
-      const realLines: string[][] = [];
+      let realHeaders: string[] = []
+      const realLines: string[][] = []
       await new Promise<void>((resolve) => {
         new Parser(simpleTitanicStr, {
           streamConfig: {
@@ -94,48 +94,48 @@ describe('parserHelper', () => {
   describe('parserHelper.guessLineEndingCharFromCsv', () => {
     it('CRLF', () => {
       const testCaseForCRLF = 'line1\r\nline2\r\nline3\r\n'
-      const endingCharFromCsv = guessLineEndingCharFromCsv(testCaseForCRLF);
+      const endingCharFromCsv = guessLineEndingCharFromCsv(testCaseForCRLF)
       expect(endingCharFromCsv).toBe('\r\n')
-    });
+    })
     it('LF', () => {
       const testCaseForLF = 'line1\nline2\nline3\n'
-      const endingCharFromCsv = guessLineEndingCharFromCsv(testCaseForLF);
+      const endingCharFromCsv = guessLineEndingCharFromCsv(testCaseForLF)
       expect(endingCharFromCsv).toBe('\n')
-    });
+    })
     it('CR', () => {
       const testCaseForCR = 'line1\rline2\rline3\r'
-      const endingCharFromCsv = guessLineEndingCharFromCsv(testCaseForCR);
+      const endingCharFromCsv = guessLineEndingCharFromCsv(testCaseForCR)
       expect(endingCharFromCsv).toBe('\r')
-    });
+    })
     it('Mixed', () => {
       const testCaseForMixed = 'line1\r\nline2\nline3\r'
-      const endingCharFromCsv = guessLineEndingCharFromCsv(testCaseForMixed);
+      const endingCharFromCsv = guessLineEndingCharFromCsv(testCaseForMixed)
       expect(endingCharFromCsv).toBe('\r')
-    });
+    })
   })
 
   describe('guessDelimiterFromCsv', () => {
     it('should return the correct delimiter', () => {
-      const text = 'col1,col2,col3\nval1,val2,val3\nval4,val5,val6';
-      const expectedDelimiter = ',';
-      expect(guessDelimiterFromCsv(text)).toBe(expectedDelimiter);
-    });
+      const text = 'col1,col2,col3\nval1,val2,val3\nval4,val5,val6'
+      const expectedDelimiter = ','
+      expect(guessDelimiterFromCsv(text)).toBe(expectedDelimiter)
+    })
 
     it('should return the default delimiter when no matches found', () => {
-      const text = 'col1col2col3\nval1val2val3\nval4val5val6';
-      expect(guessDelimiterFromCsv(text)).toBe(DEFAULT_DELIMITERS);
-    });
+      const text = 'col1col2col3\nval1val2val3\nval4val5val6'
+      expect(guessDelimiterFromCsv(text)).toBe(DEFAULT_DELIMITERS)
+    })
 
     it('should be able to guess other delimiters', () => {
-      const text = 'col1|col2|col3\nval1|val2|val3\nval4|val5|val6';
-      const expectedDelimiter = '|';
-      expect(guessDelimiterFromCsv(text)).toBe(expectedDelimiter);
-    });
+      const text = 'col1|col2|col3\nval1|val2|val3\nval4|val5|val6'
+      const expectedDelimiter = '|'
+      expect(guessDelimiterFromCsv(text)).toBe(expectedDelimiter)
+    })
 
     it('should return the first delimiter with the highest confidence', () => {
-      const text = 'col1,col2;col3\nval1,val2;val3\nval4,val5;val6';
-      const expectedDelimiter = ',';
-      expect(guessDelimiterFromCsv(text)).toBe(expectedDelimiter);
-    });
-  });
+      const text = 'col1,col2;col3\nval1,val2;val3\nval4,val5;val6'
+      const expectedDelimiter = ','
+      expect(guessDelimiterFromCsv(text)).toBe(expectedDelimiter)
+    })
+  })
 })
