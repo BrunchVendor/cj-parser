@@ -1,14 +1,14 @@
-import { ChunkModel, StreamerConfig, StreamerEventHandler } from './types';
-import { Streamer } from './BaseStreamer';
+import { ChunkModel, StreamerConfig, StreamerEventHandler } from './types'
+import { Streamer } from './BaseStreamer'
 
 export class StringStreamer extends Streamer<string, string> {
   constructor(content: string, config?: StreamerConfig, handler?: StreamerEventHandler<string>) {
-    super(content, config, handler);
+    super(content, config, handler)
     this.config.chunkSize = this.config.chunkSize ?? content.length
   }
 
   hasNext(): boolean {
-    return !!this.content;
+    return !!this.content
   }
 
   protected nextChunk(): ChunkModel<string> {
@@ -17,6 +17,6 @@ export class StringStreamer extends Streamer<string, string> {
     return {
       data: chunkContent ?? '',
       isLastChunk: !this.hasNext(),
-    };
+    }
   }
 }

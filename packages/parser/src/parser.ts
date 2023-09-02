@@ -1,7 +1,7 @@
-import { Readable } from 'stream';
-import { ChunkModel, streamer } from '@cj-parser/streamer';
-import { ParserConfig, ParserResult } from './types';
-import { guessDelimiterFromCsv, guessLineEndingCharFromCsv } from './parserHelper';
+import { Readable } from 'stream'
+import { ChunkModel, streamer } from '@cj-parser/streamer'
+import { ParserConfig, ParserResult } from './types'
+import { guessDelimiterFromCsv, guessLineEndingCharFromCsv } from './parserHelper'
 
 export class Parser {
   private config: ParserConfig
@@ -24,19 +24,19 @@ export class Parser {
     const delimiter = this.config.delimiter ?? guessDelimiterFromCsv(content)
     const result: ParserResult = {
       data: [],
-    };
-    const lines = content.split(lineEnd);
+    }
+    const lines = content.split(lineEnd)
     if (lines.length > 1) {
       this.config.lineEnd = lineEnd
       this.config.delimiter = delimiter
     }
     for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
+      const line = lines[i]
       if (i === lines.length - 1 && ignoreLastLine) {
         result.partOfLine = line
         continue
       }
-      const columns = line.split(delimiter);
+      const columns = line.split(delimiter)
       result.data.push(columns)
     }
     return result
@@ -44,10 +44,10 @@ export class Parser {
 
   public run() {
     streamer(this.datasource, this.config.streamConfig, {
-      onChunk: (chunk:ChunkModel<string>) => {
+      onChunk: (chunk: ChunkModel<string>) => {
         const result = this.parseChunk(this.partOfLine + chunk.data, !chunk.isLastChunk)
         this.partOfLine = result.partOfLine ?? ''
-        const lines = result.data;
+        const lines = result.data
         if (this.hasHeaders() && lines.length > 0) {
           this.headers = lines[0]
           lines.shift()
@@ -83,6 +83,6 @@ export class Parser {
   }
 
   private hasHeaders() {
-    return this.headers.length <= 0;
+    return this.headers.length <= 0
   }
 }

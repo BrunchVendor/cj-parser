@@ -1,10 +1,10 @@
-import * as fs from 'fs';
-import { describe, expect, it } from 'vitest';
-import { streamer } from '../src/streamer';
+import * as fs from 'fs'
+import { describe, expect, it } from 'vitest'
+import { streamer } from '../src/streamer'
 
 describe('Streamer', () => {
-  const testCaseFilePath = `${__dirname}/../../../document/titanic.csv`;
-  const titanicStr = fs.readFileSync(testCaseFilePath, 'utf8');
+  const testCaseFilePath = `${__dirname}/../../../document/titanic.csv`
+  const titanicStr = fs.readFileSync(testCaseFilePath, 'utf8')
   const testCase = '123456i am better man now'
   const chunksForTestCase = [
     '1234',
@@ -16,7 +16,7 @@ describe('Streamer', () => {
     'w',
   ]
   it('StringSteamer', async () => {
-    const result = await new Promise<string[]>((resolve, reject) => {
+    const result = await new Promise<string[]>((resolve) => {
       const temp: string[] = []
       streamer(testCase, {
         chunkSize: 4,
@@ -39,7 +39,7 @@ describe('Streamer', () => {
       let temp: string = ''
       streamer(fs.createReadStream(testCaseFilePath), { encoding: 'utf-8' }, {
         onChunk(chunk) {
-          temp += chunk.data;
+          temp += chunk.data
         },
         onFinish() {
           resolve(temp)

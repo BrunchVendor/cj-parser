@@ -1,6 +1,6 @@
-import { Readable } from 'stream';
-import { ChunkModel, StreamerConfig, StreamerEventHandler } from './types';
-import { Streamer } from './BaseStreamer';
+import { Readable } from 'stream'
+import { ChunkModel, StreamerConfig, StreamerEventHandler } from './types'
+import { Streamer } from './BaseStreamer'
 
 export class ReadableStreamer extends Streamer<Readable, string> {
   pauseInternal: boolean
@@ -10,19 +10,19 @@ export class ReadableStreamer extends Streamer<Readable, string> {
   streamEnd: boolean
 
   constructor(content: Readable, config?: StreamerConfig, handler?: StreamerEventHandler<string>) {
-    super(content, config, handler);
+    super(content, config, handler)
     this.pauseInternal = false
     this.bufferCache = []
     this.streamEnd = false
   }
 
   hasNext(): boolean {
-    return !this.streamEnd && this.bufferCache.length === 1;
+    return !this.streamEnd && this.bufferCache.length === 1
   }
 
   nextChunk(): ChunkModel<string> {
     const data = this.bufferCache.length ? this.bufferCache.shift() : ''
-    return { data: data ?? '', isLastChunk: !this.hasNext() };
+    return { data: data ?? '', isLastChunk: !this.hasNext() }
   }
 
   private onStreamData = (chunk: any) => {

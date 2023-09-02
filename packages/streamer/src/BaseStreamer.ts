@@ -1,4 +1,4 @@
-import { ChunkModel, StreamerConfig, StreamerEventHandler } from './types';
+import { ChunkModel, StreamerConfig, StreamerEventHandler } from './types'
 
 export abstract class Streamer<T, R> {
   config: StreamerConfig
@@ -8,8 +8,8 @@ export abstract class Streamer<T, R> {
   handler?: StreamerEventHandler<R>
 
   protected constructor(content: T, config?: StreamerConfig, handler?: StreamerEventHandler<R>) {
-    this.config = config ?? {};
-    this.content = content;
+    this.config = config ?? {}
+    this.content = content
     if (handler) this.handler = handler
   }
 
