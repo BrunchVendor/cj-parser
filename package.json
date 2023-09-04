@@ -10,7 +10,7 @@
     "type": "npx tsc -p tsconfig.json --noEmit --composite false",
     "build:components": "pnpm --filter ./components/** run build",
     "build:packages": "pnpm --filter ./packages/** run build",
-    "test:packages": " vitest -r ./packages/"
+    "test:packages": "vitest -r ./packages/"
   },
   "workspaces": [
     "components/cj-parser-vue",

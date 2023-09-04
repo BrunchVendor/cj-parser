@@ -16,7 +16,7 @@ describe('Streamer', () => {
     'w',
   ]
   it('StringSteamer', async () => {
-    const result = await new Promise<string[]>((resolve) => {
+    const result = await new Promise<string[]>((resolve, reject) => {
       const temp: string[] = []
       streamer(testCase, {
         chunkSize: 4,
